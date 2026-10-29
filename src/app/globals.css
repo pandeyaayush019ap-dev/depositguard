@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
+@theme {
+  --color-midnight: #07111F;
+  --color-navy: #0C1B2B;
+  --color-navy-surface: #102438;
+  --color-navy-border: #1E3752;
+  --color-emerald: #16C784;
+  --color-emerald-hover: #12A86E;
+  --color-mint: #9BF5CC;
+  --color-warm-white: #F7FAFC;
+  --color-muted-slate: #94A3B8;
+  --color-subtle-amber: #F5B942;
+  --color-error-red: #EF4444;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #07111F;
+  --bg-secondary: #0C1B2B;
+  --bg-card: #102438;
+  --border-subtle: #1E3752;
+  --text-main: #F7FAFC;
+  --text-muted: #94A3B8;
+  --accent-emerald: #16C784;
+  --accent-mint: #9BF5CC;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  scroll-behavior: smooth;
+  min-height: 100%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #07111F;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E3752;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #16C784;
+}
+
+/* Glassmorphism surfaces */
+.glass-panel {
+  background: rgba(12, 27, 43, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-elevated {
+  background: rgba(16, 36, 56, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(22, 199, 132, 0.2);
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.5), 0 0 24px -2px rgba(22, 199, 132, 0.08);
+}
+
+/* Subtle emerald glow */
+.glow-emerald {
+  box-shadow: 0 0 25px rgba(22, 199, 132, 0.2);
+}
+
+.glow-emerald-lg {
+  box-shadow: 0 0 45px rgba(22, 199, 132, 0.3);
+}
+
+/* Accessible dialog styles per Modern Web Guidance */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background-color: rgba(7, 17, 31, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
